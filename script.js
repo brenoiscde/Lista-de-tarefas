@@ -1,34 +1,41 @@
-let listaTarefas = [];
-
-function addTarefa() {
-    // Obter o valor do input
-    let tarefa = document.querySelector("#taskInput").value.trim();
-
-    // Verificar se a tarefa não está vazia
-    if (tarefa === '') {
-        alert('Digite uma tarefa');
-        return;
+// 1. Criando a lista
+const listaTarefas = [];
+// 2. Funcao exibindo as tarefas
+function exibirTarefa(tarefainput){
+    let taskList = document.getElementById('taskList');
+    taskList.innerHTML = ""
+    for(let i = 0; i < listaTarefas.length; i++ ){
+        taskList.innerHTML += `
+        <li> ${i + 1}.
+        ${listaTarefas[i]}
+        <button onclick="removeTarefa(${i})">Delete</button>`;
     }
-
-    // Adicionar a tarefa à lista
+    tarefainput.value = ""
+    
+}
+// 3. Adicionando as tarefas
+function addTarefas(){
+    let inputTarefa = document.getElementById('taskInput')
+    let tarefa = document.getElementById('taskInput').value;
     listaTarefas.push(tarefa);
 
-    // Atualizar a lista no HTML
-    let taskList = document.querySelector("#taskList");
-    // Limpar a lista existente
-    taskList.innerHTML= '';
-
-    // Adicionar cada tarefa como um item da lista
-    for(let i = 0; i < listaTarefas.length; i++){
-        let li = document.createElement('li');
-        li.textContent = i + ". " + listaTarefas[i]
-        taskList.appendChild(li)
-    }
-
-    // Limpar o campo de input
-    document.querySelector("#taskInput").value = '';
+    exibirTarefa(inputTarefa)
 }
-
-// Adicionar um listener de evento ao botão
-let botao = document.querySelector("#addTaskButton");
-botao.addEventListener('click', addTarefa);
+// 4. Funcao remove tarefas
+function removeTarefa(indice){
+    listaTarefas.splice(listaTarefas[indice],1)
+    exibirTarefa()
+}
+// 5. Funcao verificar se o input tem algo
+function verificaInput(){
+    let tarefa = document.getElementById('taskInput').value;
+    if(tarefa){
+        addTarefas()
+    }
+    else{
+        alert('O input está vazio.')
+    }
+}
+// 6. Adicionando evento do botao
+const botao = document.getElementById('addTaskButton');
+botao.addEventListener('click', verificaInput)

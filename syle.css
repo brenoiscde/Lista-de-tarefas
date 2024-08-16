@@ -15,16 +15,21 @@ body {
   }
   
   #taskList li {
+    display: flex;
     background-color: #fff;
     margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    justify-content: space-between;
+    align-items: center;
+
   }
   
   #taskInput {
     width: 100%;
+    max-width: 99%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ddd;
@@ -43,4 +48,16 @@ body {
   #addTaskButton:hover {
     background-color: #003c8f;
   }
-  
+
+  button{
+    background-color: rgb(218, 69, 69);
+    border: 1px solid rgb(218, 69, 69);
+    border-radius: 7px;
+    cursor: pointer;
+    color: #fff;
+    padding: 4px 10px;
+  }
+  button:hover{
+    background-color:rgb(179, 6, 6);
+    border:2px solid rgb(179, 6, 6);
+  }
